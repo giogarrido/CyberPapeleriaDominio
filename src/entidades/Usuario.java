@@ -1,11 +1,18 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
 package entidades;
 
+import enumeradores.Rol;
 import java.io.Serializable;
 import java.util.List;
 import java.util.Objects;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -16,65 +23,60 @@ import javax.persistence.Table;
  *
  * @author Giovanni Garrido
  */
+
 @Entity
-@Table(name = "clientes")
-
-public class Cliente implements Serializable {
-
-    private static final long serialVersionUID = 1L;
-
+@Table(name = "usuarios")
+public class Usuario implements Serializable {
+    
+        private static final long serialVersionUID = 1L;
+    
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-
+    
     @Column(name = "nombre", nullable = false, length = 45)
     private String nombre;
-
-    @Column(name = "rfc", nullable = false, length = 13)
-    private String rfc;
-
-    @Column(name = "email", nullable = false, length = 100)
-    private String email;
-
-    @Column(name = "telefono", nullable = false, length = 15)
-    private String telefono;
     
-    @OneToMany (cascade = CascadeType.ALL, mappedBy = "cliente")
+    @Column(name = "password", nullable = false, length = 20)
+    private String password;
+    
+    @Column(name = "rol", nullable = false, length = 15)
+    @Enumerated (EnumType.STRING)
+    private Rol rol;
+    
+    @OneToMany (cascade = CascadeType.ALL, mappedBy = "usuario")
     private List<Venta> ventas;
 
-    public Cliente() {
+    public Usuario() {
     }
 
-    public Cliente(String nombre, String rfc, String email, String telefono) {
+
+    public Usuario(String nombre, String password, Rol rol) {
         this.nombre = nombre;
-        this.rfc = rfc;
-        this.email = email;
-        this.telefono = telefono;
+        this.password = password;
+        this.rol = rol;
     }
 
-    public Cliente(Integer id, String nombre, String rfc, String email, String telefono) {
+    public Usuario(Integer id, String nombre, String password, Rol rol) {
         this.id = id;
         this.nombre = nombre;
-        this.rfc = rfc;
-        this.email = email;
-        this.telefono = telefono;
+        this.password = password;
+        this.rol = rol;
     }
 
-    public Cliente(String nombre, String rfc, String email, String telefono, List<Venta> ventas) {
+    public Usuario(String nombre, String password, Rol rol, List<Venta> ventas) {
         this.nombre = nombre;
-        this.rfc = rfc;
-        this.email = email;
-        this.telefono = telefono;
+        this.password = password;
+        this.rol = rol;
         this.ventas = ventas;
     }
 
-    public Cliente(Integer id, String nombre, String rfc, String email, String telefono, List<Venta> ventas) {
+    public Usuario(Integer id, String nombre, String password, Rol rol, List<Venta> ventas) {
         this.id = id;
         this.nombre = nombre;
-        this.rfc = rfc;
-        this.email = email;
-        this.telefono = telefono;
+        this.password = password;
+        this.rol = rol;
         this.ventas = ventas;
     }
 
@@ -94,28 +96,20 @@ public class Cliente implements Serializable {
         this.nombre = nombre;
     }
 
-    public String getRfc() {
-        return rfc;
+    public String getPassword() {
+        return password;
     }
 
-    public void setRfc(String rfc) {
-        this.rfc = rfc;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
-    public String getEmail() {
-        return email;
+    public Rol getRol() {
+        return rol;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getTelefono() {
-        return telefono;
-    }
-
-    public void setTelefono(String telefono) {
-        this.telefono = telefono;
+    public void setRol(Rol rol) {
+        this.rol = rol;
     }
 
     public List<Venta> getVentas() {
@@ -128,8 +122,8 @@ public class Cliente implements Serializable {
 
     @Override
     public int hashCode() {
-        int hash = 3;
-        hash = 97 * hash + Objects.hashCode(this.id);
+        int hash = 5;
+        hash = 79 * hash + Objects.hashCode(this.id);
         return hash;
     }
 
@@ -144,14 +138,17 @@ public class Cliente implements Serializable {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final Cliente other = (Cliente) obj;
+        final Usuario other = (Usuario) obj;
         return Objects.equals(this.id, other.id);
     }
 
     @Override
     public String toString() {
-        return nombre;
+        return "usuario{" + "nombre=" + nombre + '}';
     }
     
     
+
+        
+        
 }

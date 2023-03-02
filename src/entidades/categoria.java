@@ -5,12 +5,15 @@
 package entidades;
 
 import java.io.Serializable;
+import java.util.List;
 import java.util.Objects;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -19,7 +22,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "categorias")
-public class categoria implements Serializable {
+public class Categoria implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -31,20 +34,30 @@ public class categoria implements Serializable {
     @Column(name = "nombre", nullable = false, length = 50)
     private String nombre;
 
-    public categoria() {
+    @OneToMany (cascade = CascadeType.ALL, mappedBy = "categoria")
+    private List<Producto> productos;
+
+    public Categoria() {
     }
 
-    public categoria(Integer id) {
-        this.id = id;
-    }
-
-    public categoria(String nombre) {
+    public Categoria(String nombre) {
         this.nombre = nombre;
     }
 
-    public categoria(Integer id, String nombre) {
+    public Categoria(String nombre, List<Producto> productos) {
+        this.nombre = nombre;
+        this.productos = productos;
+    }
+
+    public Categoria(Integer id, String nombre) {
         this.id = id;
         this.nombre = nombre;
+    }
+
+    public Categoria(Integer id, String nombre, List<Producto> productos) {
+        this.id = id;
+        this.nombre = nombre;
+        this.productos = productos;
     }
 
     public Integer getId() {
@@ -63,9 +76,17 @@ public class categoria implements Serializable {
         this.nombre = nombre;
     }
 
+    public List<Producto> getProductos() {
+        return productos;
+    }
+
+    public void setProductos(List<Producto> productos) {
+        this.productos = productos;
+    }
+
     @Override
     public int hashCode() {
-        int hash = 5;
+        int hash = 7;
         hash = 41 * hash + Objects.hashCode(this.id);
         return hash;
     }
@@ -81,7 +102,7 @@ public class categoria implements Serializable {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final categoria other = (categoria) obj;
+        final Categoria other = (Categoria) obj;
         return Objects.equals(this.id, other.id);
     }
 
@@ -89,6 +110,7 @@ public class categoria implements Serializable {
     public String toString() {
         return nombre;
     }
+    
     
     
 }
