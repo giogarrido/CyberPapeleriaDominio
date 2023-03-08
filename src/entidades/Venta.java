@@ -33,6 +33,9 @@ public class Venta implements Serializable {
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+    
+    @Column (name = "numTicket", nullable = false)
+    private Integer numTicket;
 
     @Column(name = "fecha", nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
@@ -59,22 +62,8 @@ public class Venta implements Serializable {
         this.id = id;
     }
 
-    public Venta(Calendar fecha, float totalventa, Cliente cliente, Caja caja) {
-        this.fecha = fecha;
-        this.totalventa = totalventa;
-        this.cliente = cliente;
-        this.caja = caja;
-    }
-
-    public Venta(Integer id, Calendar fecha, float totalventa, Cliente cliente, Caja caja) {
-        this.id = id;
-        this.fecha = fecha;
-        this.totalventa = totalventa;
-        this.cliente = cliente;
-        this.caja = caja;
-    }
-
-    public Venta(Calendar fecha, float totalventa, Cliente cliente, List<DetalleVenta> detalleVentas, Caja caja) {
+    public Venta(Integer numTicket, Calendar fecha, float totalventa, Cliente cliente, List<DetalleVenta> detalleVentas, Caja caja) {
+        this.numTicket = numTicket;
         this.fecha = fecha;
         this.totalventa = totalventa;
         this.cliente = cliente;
@@ -82,8 +71,9 @@ public class Venta implements Serializable {
         this.caja = caja;
     }
 
-    public Venta(Integer id, Calendar fecha, float totalventa, Cliente cliente, List<DetalleVenta> detalleVentas, Caja caja) {
+    public Venta(Integer id, Integer numTicket, Calendar fecha, float totalventa, Cliente cliente, List<DetalleVenta> detalleVentas, Caja caja) {
         this.id = id;
+        this.numTicket = numTicket;
         this.fecha = fecha;
         this.totalventa = totalventa;
         this.cliente = cliente;
@@ -97,6 +87,14 @@ public class Venta implements Serializable {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public Integer getNumTicket() {
+        return numTicket;
+    }
+
+    public void setNumTicket(Integer numTicket) {
+        this.numTicket = numTicket;
     }
 
     public Calendar getFecha() {
@@ -141,8 +139,8 @@ public class Venta implements Serializable {
 
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 79 * hash + Objects.hashCode(this.id);
+        int hash = 3;
+        hash = 71 * hash + Objects.hashCode(this.id);
         return hash;
     }
 
@@ -160,8 +158,14 @@ public class Venta implements Serializable {
         final Venta other = (Venta) obj;
         return Objects.equals(this.id, other.id);
     }
-    
-    
+
+    @Override
+    public String toString() {
+        return numTicket.toString();
+    }
+
+
+
     
 
 }
