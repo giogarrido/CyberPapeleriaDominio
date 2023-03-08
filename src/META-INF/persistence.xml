@@ -10,6 +10,10 @@
     <class>entidades.Proveedor</class>
     <class>entidades.Usuario</class>
     <class>entidades.Venta</class>
+    <class>entidades.Caja</class>
+    <class>entidades.EntradaAlmacen</class>
+    <class>entidades.Gasto</class>
+    <class>entidades.Inventario</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/cyberpapeleria?zeroDateTimeBehavior=CONVERT_TO_NULL"/>
       <property name="javax.persistence.jdbc.user" value="root"/>

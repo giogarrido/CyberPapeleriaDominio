@@ -18,7 +18,7 @@ import javax.persistence.Table;
  */
 
 @Entity
-@Table(name = "detalle_ventas")
+@Table(name = "detalleVentas")
 
 public class DetalleVenta implements Serializable {
 
@@ -32,45 +32,42 @@ public class DetalleVenta implements Serializable {
     @Column(name = "cantidad")
     private int cantidad;
 
-    @Column(name = "precioventa")
-    private float precioventa;
+    @Column(name = "precioVendido")
+    private float precioVendido;
 
     @Column(name = "importe")
     private float importe;
 
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "idproducto", nullable = false)
-    private Producto producto;
+    @JoinColumn(name = "idVenta", nullable = false)
+    private Venta venta;
 
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "idventa", nullable = false)
-    private Venta venta;
+    @JoinColumn(name = "idInventario", nullable = false)
+    private Inventario inventario;
 
     public DetalleVenta() {
     }
 
-    public DetalleVenta(int cantidad, float precioventa, float importe, Producto producto) {
-        this.cantidad = cantidad;
-        this.precioventa = precioventa;
-        this.importe = importe;
-        this.producto = producto;
+    public DetalleVenta(Integer id) {
+        this.id = id;
     }
 
-    public DetalleVenta(int cantidad, float precioventa, float importe, Producto producto, Venta venta) {
+    public DetalleVenta(int cantidad, float precioVendido, float importe, Venta venta, Inventario inventario) {
         this.cantidad = cantidad;
-        this.precioventa = precioventa;
+        this.precioVendido = precioVendido;
         this.importe = importe;
-        this.producto = producto;
         this.venta = venta;
+        this.inventario = inventario;
     }
 
-    public DetalleVenta(Integer id, int cantidad, float precioventa, float importe, Producto producto, Venta venta) {
+    public DetalleVenta(Integer id, int cantidad, float precioVendido, float importe, Venta venta, Inventario inventario) {
         this.id = id;
         this.cantidad = cantidad;
-        this.precioventa = precioventa;
+        this.precioVendido = precioVendido;
         this.importe = importe;
-        this.producto = producto;
         this.venta = venta;
+        this.inventario = inventario;
     }
 
     public Integer getId() {
@@ -89,12 +86,12 @@ public class DetalleVenta implements Serializable {
         this.cantidad = cantidad;
     }
 
-    public float getPrecioventa() {
-        return precioventa;
+    public float getPrecioVendido() {
+        return precioVendido;
     }
 
-    public void setPrecioventa(float precioventa) {
-        this.precioventa = precioventa;
+    public void setPrecioVendido(float precioVendido) {
+        this.precioVendido = precioVendido;
     }
 
     public float getImporte() {
@@ -105,14 +102,6 @@ public class DetalleVenta implements Serializable {
         this.importe = importe;
     }
 
-    public Producto getProducto() {
-        return producto;
-    }
-
-    public void setProducto(Producto producto) {
-        this.producto = producto;
-    }
-
     public Venta getVenta() {
         return venta;
     }
@@ -121,10 +110,18 @@ public class DetalleVenta implements Serializable {
         this.venta = venta;
     }
 
+    public Inventario getInventario() {
+        return inventario;
+    }
+
+    public void setInventario(Inventario inventario) {
+        this.inventario = inventario;
+    }
+
     @Override
     public int hashCode() {
         int hash = 3;
-        hash = 83 * hash + Objects.hashCode(this.id);
+        hash = 29 * hash + Objects.hashCode(this.id);
         return hash;
     }
 
@@ -143,13 +140,7 @@ public class DetalleVenta implements Serializable {
         return Objects.equals(this.id, other.id);
     }
 
-    @Override
-    public String toString() {
-        return "DetalleVenta{" + "id=" + id + ", cantidad=" + cantidad + ", precioventa=" + precioventa + ", importe=" + importe + ", producto=" + producto + ", venta=" + venta + '}';
-    }
-    
-    
-    
+   
     
 
 }

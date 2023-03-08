@@ -35,56 +35,45 @@ public class Producto implements Serializable {
     @Column(name = "descripcion", nullable = false, length = 200)
     private String descripcion;
 
-    @Column(name = "precioactual", nullable = false)
-    private float precioActual;
+    @Column(name = "precioCompra", nullable = false)
+    private float precioCompra;
 
-    @Column(name = "stock", nullable = false)
-    private int stock;
 
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "idcategoria", nullable = false)
+    @JoinColumn(name = "idCategoria", nullable = false)
     private Categoria categoria;
+    
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "idInventario", nullable = false)
+    private Inventario inventario;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "producto")
-    private List<Proveedor> proveedores;
+    private List<EntradaAlmacen> entradasAlmacens;
 
     public Producto() {
     }
 
-    public Producto(String nombre, String descripcion, float precioActual, int stock, Categoria categoria) {
-        this.nombre = nombre;
-        this.descripcion = descripcion;
-        this.precioActual = precioActual;
-        this.stock = stock;
-        this.categoria = categoria;
+    public Producto(Integer id) {
+        this.id = id;
     }
 
-    public Producto(String nombre, String descripcion, float precioActual, int stock, Categoria categoria, List<Proveedor> proveedores) {
+    public Producto(String nombre, String descripcion, float precioCompra, Categoria categoria, Inventario inventario, List<EntradaAlmacen> entradasAlmacens) {
         this.nombre = nombre;
         this.descripcion = descripcion;
-        this.precioActual = precioActual;
-        this.stock = stock;
+        this.precioCompra = precioCompra;
         this.categoria = categoria;
-        this.proveedores = proveedores;
+        this.inventario = inventario;
+        this.entradasAlmacens = entradasAlmacens;
     }
 
-    public Producto(Integer id, String nombre, String descripcion, float precioActual, int stock, Categoria categoria, List<Proveedor> proveedores) {
+    public Producto(Integer id, String nombre, String descripcion, float precioCompra, Categoria categoria, Inventario inventario, List<EntradaAlmacen> entradasAlmacens) {
         this.id = id;
         this.nombre = nombre;
         this.descripcion = descripcion;
-        this.precioActual = precioActual;
-        this.stock = stock;
+        this.precioCompra = precioCompra;
         this.categoria = categoria;
-        this.proveedores = proveedores;
-    }
-
-    public Producto(Integer id, String nombre, String descripcion, float precioActual, int stock, Categoria categoria) {
-        this.id = id;
-        this.nombre = nombre;
-        this.descripcion = descripcion;
-        this.precioActual = precioActual;
-        this.stock = stock;
-        this.categoria = categoria;
+        this.inventario = inventario;
+        this.entradasAlmacens = entradasAlmacens;
     }
 
     public Integer getId() {
@@ -111,20 +100,12 @@ public class Producto implements Serializable {
         this.descripcion = descripcion;
     }
 
-    public float getPrecioActual() {
-        return precioActual;
+    public float getPrecioCompra() {
+        return precioCompra;
     }
 
-    public void setPrecioActual(float precioActual) {
-        this.precioActual = precioActual;
-    }
-
-    public int getStock() {
-        return stock;
-    }
-
-    public void setStock(int stock) {
-        this.stock = stock;
+    public void setPrecioCompra(float precioCompra) {
+        this.precioCompra = precioCompra;
     }
 
     public Categoria getCategoria() {
@@ -135,18 +116,26 @@ public class Producto implements Serializable {
         this.categoria = categoria;
     }
 
-    public List<Proveedor> getProveedores() {
-        return proveedores;
+    public Inventario getInventario() {
+        return inventario;
     }
 
-    public void setProveedores(List<Proveedor> proveedores) {
-        this.proveedores = proveedores;
+    public void setInventario(Inventario inventario) {
+        this.inventario = inventario;
+    }
+
+    public List<EntradaAlmacen> getEntradasAlmacens() {
+        return entradasAlmacens;
+    }
+
+    public void setEntradasAlmacens(List<EntradaAlmacen> entradasAlmacens) {
+        this.entradasAlmacens = entradasAlmacens;
     }
 
     @Override
     public int hashCode() {
-        int hash = 3;
-        hash = 37 * hash + Objects.hashCode(this.id);
+        int hash = 7;
+        hash = 31 * hash + Objects.hashCode(this.id);
         return hash;
     }
 
@@ -169,8 +158,9 @@ public class Producto implements Serializable {
     public String toString() {
         return nombre;
     }
+
     
     
     
 
-}
+}//end class

@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package entidades;
 
 import enumeradores.Rol;
@@ -46,7 +43,7 @@ public class Usuario implements Serializable {
     private Rol rol;
     
     @OneToMany (cascade = CascadeType.ALL, mappedBy = "usuario")
-    private List<Venta> ventas;
+    private List<Caja> cajas;
 
     public Usuario() {
     }
@@ -65,19 +62,19 @@ public class Usuario implements Serializable {
         this.rol = rol;
     }
 
-    public Usuario(String nombre, String password, Rol rol, List<Venta> ventas) {
+    public Usuario(String nombre, String password, Rol rol, List<Caja> cajas) {
         this.nombre = nombre;
         this.password = password;
         this.rol = rol;
-        this.ventas = ventas;
+        this.cajas = cajas;
     }
 
-    public Usuario(Integer id, String nombre, String password, Rol rol, List<Venta> ventas) {
+    public Usuario(Integer id, String nombre, String password, Rol rol, List<Caja> cajas) {
         this.id = id;
         this.nombre = nombre;
         this.password = password;
         this.rol = rol;
-        this.ventas = ventas;
+        this.cajas = cajas;
     }
 
     public Integer getId() {
@@ -112,12 +109,12 @@ public class Usuario implements Serializable {
         this.rol = rol;
     }
 
-    public List<Venta> getVentas() {
-        return ventas;
+    public List<Caja> getCajas() {
+        return cajas;
     }
 
-    public void setVentas(List<Venta> ventas) {
-        this.ventas = ventas;
+    public void setCajas(List<Caja> cajas) {
+        this.cajas = cajas;
     }
 
     @Override
@@ -144,7 +141,7 @@ public class Usuario implements Serializable {
 
     @Override
     public String toString() {
-        return "usuario{" + "nombre=" + nombre + '}';
+        return nombre;
     }
     
     
