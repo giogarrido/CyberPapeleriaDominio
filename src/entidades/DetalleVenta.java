@@ -43,8 +43,8 @@ public class DetalleVenta implements Serializable {
     private Venta venta;
 
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "idInventario", nullable = false)
-    private Inventario inventario;
+    @JoinColumn(name = "idProducto", nullable = false)
+    private Producto producto;
 
     public DetalleVenta() {
     }
@@ -53,21 +53,27 @@ public class DetalleVenta implements Serializable {
         this.id = id;
     }
 
-    public DetalleVenta(int cantidad, float precioVendido, float importe, Venta venta, Inventario inventario) {
+    public DetalleVenta(int cantidad, float precioVendido, float importe) {
         this.cantidad = cantidad;
         this.precioVendido = precioVendido;
         this.importe = importe;
-        this.venta = venta;
-        this.inventario = inventario;
     }
 
-    public DetalleVenta(Integer id, int cantidad, float precioVendido, float importe, Venta venta, Inventario inventario) {
+    public DetalleVenta(Integer id, int cantidad, float precioVendido, float importe, Venta venta, Producto producto) {
         this.id = id;
         this.cantidad = cantidad;
         this.precioVendido = precioVendido;
         this.importe = importe;
         this.venta = venta;
-        this.inventario = inventario;
+        this.producto = producto;
+    }
+
+    public DetalleVenta(int cantidad, float precioVendido, float importe, Venta venta, Producto producto) {
+        this.cantidad = cantidad;
+        this.precioVendido = precioVendido;
+        this.importe = importe;
+        this.venta = venta;
+        this.producto = producto;
     }
 
     public Integer getId() {
@@ -110,18 +116,18 @@ public class DetalleVenta implements Serializable {
         this.venta = venta;
     }
 
-    public Inventario getInventario() {
-        return inventario;
+    public Producto getProducto() {
+        return producto;
     }
 
-    public void setInventario(Inventario inventario) {
-        this.inventario = inventario;
+    public void setProducto(Producto producto) {
+        this.producto = producto;
     }
 
     @Override
     public int hashCode() {
-        int hash = 3;
-        hash = 29 * hash + Objects.hashCode(this.id);
+        int hash = 7;
+        hash = 71 * hash + Objects.hashCode(this.id);
         return hash;
     }
 
@@ -139,8 +145,7 @@ public class DetalleVenta implements Serializable {
         final DetalleVenta other = (DetalleVenta) obj;
         return Objects.equals(this.id, other.id);
     }
-
-   
     
-
+    
+    
 }

@@ -45,12 +45,9 @@ public class EntradaAlmacen implements Serializable{
     private float precioCompra;
     
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "idProveedor", nullable = false)
+    @JoinColumn(name = "idProvedor", nullable = false)
     private Proveedor proveedor;
     
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "idInventario", nullable = false)
-    private Inventario inventario;
     
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "idProducto", nullable = false)
@@ -63,22 +60,20 @@ public class EntradaAlmacen implements Serializable{
         this.id = id;
     }
 
-    public EntradaAlmacen(Calendar fechaEntrada, Integer cantidadComprada, float precioCompra, Proveedor proveedor, Inventario inventario, Producto producto) {
+    public EntradaAlmacen(Calendar fechaEntrada, Integer cantidadComprada, float precioCompra, Proveedor proveedor, Producto producto) {
         this.fechaEntrada = fechaEntrada;
         this.cantidadComprada = cantidadComprada;
         this.precioCompra = precioCompra;
         this.proveedor = proveedor;
-        this.inventario = inventario;
         this.producto = producto;
     }
 
-    public EntradaAlmacen(Integer id, Calendar fechaEntrada, Integer cantidadComprada, float precioCompra, Proveedor proveedor, Inventario inventario, Producto producto) {
+    public EntradaAlmacen(Integer id, Calendar fechaEntrada, Integer cantidadComprada, float precioCompra, Proveedor proveedor, Producto producto) {
         this.id = id;
         this.fechaEntrada = fechaEntrada;
         this.cantidadComprada = cantidadComprada;
         this.precioCompra = precioCompra;
         this.proveedor = proveedor;
-        this.inventario = inventario;
         this.producto = producto;
     }
 
@@ -120,14 +115,6 @@ public class EntradaAlmacen implements Serializable{
 
     public void setProveedor(Proveedor proveedor) {
         this.proveedor = proveedor;
-    }
-
-    public Inventario getInventario() {
-        return inventario;
-    }
-
-    public void setInventario(Inventario inventario) {
-        this.inventario = inventario;
     }
 
     public Producto getProducto() {

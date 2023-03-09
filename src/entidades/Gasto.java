@@ -32,7 +32,7 @@ public class Gasto implements Serializable{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     
-    @Column(name = "fecha_gasto", nullable = false)
+    @Column(name = "fechaGasto", nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
     private Calendar fechaGasto;
     

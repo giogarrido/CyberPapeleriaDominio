@@ -1,7 +1,6 @@
 package entidades;
 
 import enumeradores.Estado;
-import enumeradores.Rol;
 import java.io.Serializable;
 import java.util.Calendar;
 import java.util.List;
