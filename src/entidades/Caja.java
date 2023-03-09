@@ -41,7 +41,7 @@ public class Caja implements Serializable {
     @Temporal(TemporalType.TIMESTAMP)
     private Calendar fechaApertura;
 
-    @Column(name = "fechaCierre", nullable = false)
+    @Column(name = "fechaCierre")
     @Temporal(TemporalType.TIMESTAMP)
     private Calendar fechaCierre;
 
@@ -73,6 +73,18 @@ public class Caja implements Serializable {
 
     public Caja() {
     }
+
+    public Caja(Calendar fechaApertura, float saldoInicial, float saldoCierre, float totalIngresos, float totalGastos, Estado estado, Usuario usuario) {
+        
+        this.fechaApertura = fechaApertura;
+        this.saldoInicial = saldoInicial;
+        this.saldoCierre = saldoCierre;
+        this.totalIngresos = totalIngresos;
+        this.totalGastos = totalGastos;
+        this.estado = estado;
+        this.usuario = usuario;
+    }
+
 
     public Caja(Calendar fechaApertura, Calendar fechaCierre, float saldoInicial, float saldoCierre, float totalIngresos, float totalGastos, Estado estado, Usuario usuario) {
         this.fechaApertura = fechaApertura;

@@ -39,11 +39,15 @@ public class Cliente implements Serializable {
 
     @Column(name = "telefono", nullable = false, length = 15)
     private String telefono;
-    
-    @OneToMany (cascade = CascadeType.ALL, mappedBy = "cliente")
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "cliente")
     private List<Venta> ventas;
 
     public Cliente() {
+    }
+
+    public Cliente(Integer id) {
+        this.id = id;
     }
 
     public Cliente(String nombre, String rfc, String email, String telefono) {
@@ -152,6 +156,5 @@ public class Cliente implements Serializable {
     public String toString() {
         return nombre;
     }
-    
-    
+
 }

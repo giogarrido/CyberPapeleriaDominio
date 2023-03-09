@@ -62,6 +62,15 @@ public class Venta implements Serializable {
         this.id = id;
     }
 
+    public Venta(Integer numTicket, Calendar fecha, float totalventa, Cliente cliente, Caja caja) {
+        this.numTicket = numTicket;
+        this.fecha = fecha;
+        this.totalventa = totalventa;
+        this.cliente = cliente;
+        this.caja = caja;
+    }
+    
+
     public Venta(Integer numTicket, Calendar fecha, float totalventa, Cliente cliente, List<DetalleVenta> detalleVentas, Caja caja) {
         this.numTicket = numTicket;
         this.fecha = fecha;
@@ -80,6 +89,7 @@ public class Venta implements Serializable {
         this.detalleVentas = detalleVentas;
         this.caja = caja;
     }
+
 
     public Integer getId() {
         return id;
