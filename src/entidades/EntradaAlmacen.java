@@ -39,7 +39,7 @@ public class EntradaAlmacen implements Serializable{
     private Calendar fechaEntrada;
     
     @Column(name = "cantidadComprada", nullable = false)
-    private Integer cantidadComprada;
+    private int cantidadComprada;
     
     @Column(name = "precioCompra", nullable = false)
     private float precioCompra;
@@ -56,11 +56,11 @@ public class EntradaAlmacen implements Serializable{
     public EntradaAlmacen() {
     }
 
-    public EntradaAlmacen(Integer id) {
+    public EntradaAlmacen(int id) {
         this.id = id;
     }
 
-    public EntradaAlmacen(Calendar fechaEntrada, Integer cantidadComprada, float precioCompra, Proveedor proveedor, Producto producto) {
+    public EntradaAlmacen(Calendar fechaEntrada, int cantidadComprada, float precioCompra, Proveedor proveedor, Producto producto) {
         this.fechaEntrada = fechaEntrada;
         this.cantidadComprada = cantidadComprada;
         this.precioCompra = precioCompra;
@@ -68,7 +68,7 @@ public class EntradaAlmacen implements Serializable{
         this.producto = producto;
     }
 
-    public EntradaAlmacen(Integer id, Calendar fechaEntrada, Integer cantidadComprada, float precioCompra, Proveedor proveedor, Producto producto) {
+    public EntradaAlmacen(Integer id, Calendar fechaEntrada, int cantidadComprada, float precioCompra, Proveedor proveedor, Producto producto) {
         this.id = id;
         this.fechaEntrada = fechaEntrada;
         this.cantidadComprada = cantidadComprada;
@@ -93,11 +93,11 @@ public class EntradaAlmacen implements Serializable{
         this.fechaEntrada = fechaEntrada;
     }
 
-    public Integer getCantidadComprada() {
+    public int getCantidadComprada() {
         return cantidadComprada;
     }
 
-    public void setCantidadComprada(Integer cantidadComprada) {
+    public void setCantidadComprada(int cantidadComprada) {
         this.cantidadComprada = cantidadComprada;
     }
 
